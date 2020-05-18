@@ -6,8 +6,9 @@ using namespace std;
 
 //default constructor
 polynomial::polynomial() {
-    double constant = 0;
-    this->coefficients = &constant;
+    this->coefficients = new double;
+    this->coefficients[0] = 0;
+    this->degree = 0;
 }
 
 //copy constructor
@@ -21,10 +22,10 @@ polynomial::polynomial(const int &degree) {
     this->coefficients = new double[degree+1];
 
     //initialise to zeros
-    for (int i = 0; i < sizeof(this->coefficients); i++) {
+    for (int i = 0; i < degree + 1; i++) {
         this->coefficients[i] = 0;
     }
-    
+
     this->degree = degree;
 }
 
@@ -48,7 +49,7 @@ double& polynomial::at(const int &i) {
 double polynomial::evaluate(const double &d) const {
     double result = 0;
 
-    for (int i = 0; i < sizeof(this->coefficients); i++) {
+    for (int i = 0; i < this->degree + 1; i++) {
         result += this->coefficients[i] * (pow(d, i));
     }
 
@@ -69,8 +70,21 @@ double& polynomial::operator[](const int &index) {
 
 ostream& operator<<(ostream &os, const polynomial &poly) {
     
-    for (int i = 0; i < sizeof(poly); i++) {
-        os << poly[i];
+    //insert constant
+    if (poly.degree > 0) {
+        os << poly[0] << " + ";        
+    } else {
+        os << poly[0];
     }
+
+    for (int i = 1; i < poly.degree; i++) {
+        os << poly[i] << "x^" << i << " + ";
+    }
+
+    //highest degree 
+    if (poly.degree > 0) {
+        os << poly[poly.degree] << "x^" << poly.degree;
+    }
+
     return os;
 }

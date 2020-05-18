@@ -23,4 +23,7 @@ int main() {
     cout << p1 << endl;
     cout << p2 << endl;
     cout << p3 << endl;
+
+    polynomial pconst; 
+    cout << pconst << endl;
 }

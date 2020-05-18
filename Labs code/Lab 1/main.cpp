@@ -261,8 +261,8 @@ int main(int argc, char* argv[]) {
     vector<point*> vecptr;
 
     while (infile >> n1 >> comma >> n2) {
-        // point tmp(n1, n2);
-        vec.push_back(point(n1, n2));
+        point tmp(n1, n2); //this tmp will be destroyed only at end of scope
+        vec.push_back(point(n1, n2)); //in here, the "tmp" point will be destroyed immediately
         cout << "Size of vec is: " << vec.size() << endl;
         cout << "Capacity of vec is: " << vec.capacity() << endl;
 
