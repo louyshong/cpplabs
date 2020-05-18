@@ -251,28 +251,35 @@ int main(int argc, char* argv[]) {
     // infile1.close();
     // infile2.close();
 
-    ifstream infile; 
+    // ifstream infile; 
 
-    infile.open(argv[1]);
+    // infile.open(argv[1]);
 
-    int n1, n2;
-    char comma; 
-    vector<point> vec;
-    vector<point*> vecptr;
+    // int n1, n2;
+    // char comma; 
+    // vector<point> vec;
+    // vector<point*> vecptr;
 
-    while (infile >> n1 >> comma >> n2) {
-        point tmp(n1, n2); //this tmp will be destroyed only at end of scope
-        vec.push_back(point(n1, n2)); //in here, the "tmp" point will be destroyed immediately
-        cout << "Size of vec is: " << vec.size() << endl;
-        cout << "Capacity of vec is: " << vec.capacity() << endl;
+    // while (infile >> n1 >> comma >> n2) {
+    //     point tmp(n1, n2); //this tmp will be destroyed only at end of scope
+    //     vec.push_back(point(n1, n2)); //in here, the "tmp" point will be destroyed immediately
+    //     cout << "Size of vec is: " << vec.size() << endl;
+    //     cout << "Capacity of vec is: " << vec.capacity() << endl;
 
-        // point* tmpptr = new point(n1, n2);
-        // vecptr.push_back(tmpptr);
-        // cout << "Size of vecptr is: " << vecptr.size() << endl;
-        // cout << "Capacity of vecptr is: " << vecptr.capacity() << endl;
-        // delete tmpptr;
-    }
+    //     // point* tmpptr = new point(n1, n2);
+    //     // vecptr.push_back(tmpptr);
+    //     // cout << "Size of vecptr is: " << vecptr.size() << endl;
+    //     // cout << "Capacity of vecptr is: " << vecptr.capacity() << endl;
+    //     // delete tmpptr;
+    // }
 
+    point p(1, 2);
+
+    point p1(p);
+    point p2 = p;
+
+    p2 = p2; 
+    point p3 = p2 = p1;
 
     // cout << "end of inner scope" << endl;
     
