@@ -52,3 +52,13 @@ double point::get_distance_point(const double &x_ref, const double &y_ref) const
 
     return distance;
 }
+
+ostream& operator<<(ostream &os, const point &p) {
+    os << p.x << ", " << p.y << endl;
+    return os;
+}
+
+//destructor 
+point::~point() {
+    cout << "Destroying point " << *this;
+}

@@ -1,6 +1,8 @@
 #ifndef POINT_HPP
 #define POINT_HPP
 
+#include <iostream>
+
 class point {
     public: 
         void display() const;
@@ -13,12 +15,14 @@ class point {
         double get_distance_point(const double &x_ref, const double &y_ref) const;
         // point();
         point(const double &x_in = 0, const double &y_in = 0);
+        ~point();
 
     private: 
         double x; 
         double y;
 
-    friend bool operator == (const point &p1, const point &p2);
+    friend bool operator==(const point &p1, const point &p2);
+    friend std::ostream& operator<<(std::ostream& os, const point& p);
 };
 
 #endif

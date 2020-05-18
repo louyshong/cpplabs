@@ -2,6 +2,7 @@
 #include "point.hpp"
 #include "triangle.hpp"
 #include <vector>
+#include <cstring>
 #include <fstream>
 
 using namespace std;
@@ -21,6 +22,7 @@ using namespace std;
 //     return indexoffarthest;
 // }
 
+//these can be defined in point.cpp
 bool operator< (const point &p1, const point &p2) {
     if (p1.get_distance_org() < p2.get_distance_org()) {
         return true;
@@ -204,49 +206,75 @@ int main(int argc, char* argv[]) {
     // cout << "The index of point farthest from origin is: " << endl;
     // cout << farthestpoint(pointsvec) << endl;
 
-    ifstream infile1, infile2; 
+    // ifstream infile1, infile2; 
 
-    infile1.open(argv[1]);
-    infile2.open(argv[2]);
+    // infile1.open(argv[1]);
+    // infile2.open(argv[2]);
+
+    // int n1, n2;
+    // char comma; 
+    // vector<point> vec1;
+    // vector<point> vec2;
+    // vector<point> vec3;
+    
+    // while (infile1 >> n1 >> comma >> n2) {
+    //     point tmp(n1, n2);
+    //     vec1.push_back(tmp);
+    // }
+
+    // while (infile2 >> n1 >> comma >> n2) {
+    //     point tmp(n1, n2);
+    //     vec2.push_back(tmp);
+    // }
+
+    // bool ordered;
+
+    // if (strcmp(argv[3], "true") == 0) {
+    //     ordered = true;
+    // }
+
+    // if (strcmp(argv[3], "false") == 0) {
+    //     ordered = false;
+    // }
+
+    // vec3 = pointdup(vec1, vec2, ordered);
+
+    // ofstream myfile;
+    // myfile.open(argv[4]);
+ 
+    // for(int i = 0; i < vec3.size(); i++) {
+    //     myfile << vec3[i];
+    // }
+
+    // myfile.close();
+
+    // infile1.close();
+    // infile2.close();
+
+    ifstream infile; 
+
+    infile.open(argv[1]);
 
     int n1, n2;
     char comma; 
-    vector<point> vec1;
-    vector<point> vec2;
-    vector<point> vec3;
+    vector<point> vec;
+    vector<point*> vecptr;
+
+    while (infile >> n1 >> comma >> n2) {
+        // point tmp(n1, n2);
+        vec.push_back(point(n1, n2));
+        cout << "Size of vec is: " << vec.size() << endl;
+        cout << "Capacity of vec is: " << vec.capacity() << endl;
+
+        // point* tmpptr = new point(n1, n2);
+        // vecptr.push_back(tmpptr);
+        // cout << "Size of vecptr is: " << vecptr.size() << endl;
+        // cout << "Capacity of vecptr is: " << vecptr.capacity() << endl;
+        // delete tmpptr;
+    }
+
+
+    // cout << "end of inner scope" << endl;
     
-    while (infile1 >> n1 >> comma >> n2) {
-        point tmp(n1, n2);
-        vec1.push_back(tmp);
-    }
-
-    while (infile2 >> n1 >> comma >> n2) {
-        point tmp(n1, n2);
-        vec2.push_back(tmp);
-    }
-
-    bool ordered;
-
-    if (strcmp(argv[3], "true") == 0) {
-        ordered = true;
-    }
-
-    if (strcmp(argv[3], "false") == 0) {
-        ordered = false;
-    }
-
-    vec3 = pointdup(vec1, vec2, ordered);
-
-    ofstream myfile;
-    myfile.open(argv[4]);
- 
-    for(int i = 0; i < vec3.size(); i++) {
-        myfile << vec3[i].get_x() << ',' << vec3[i].get_y() << endl;
-    }
-
-    myfile.close();
-
-    infile1.close();
-    infile2.close();
-
+    return 0;
 }
