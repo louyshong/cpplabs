@@ -85,5 +85,6 @@ Temporary Items
 *.exe
 *.out
 *.app
+prog
 
 # End of https://www.gitignore.io/api/c++

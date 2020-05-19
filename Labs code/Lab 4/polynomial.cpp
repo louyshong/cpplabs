@@ -11,10 +11,49 @@ polynomial::polynomial() {
     this->degree = 0;
 }
 
-//copy constructor
-polynomial::polynomial(const polynomial &ref) {
-    this->coefficients = ref.coefficients;
+//copy constructor (this is shallow copy)
+// polynomial::polynomial(const polynomial &ref) {
+//     this->coefficients = ref.coefficients;
+//     this->degree = ref.degree;
+// }
+
+//assignment overloaded operator (this is shallow copy)
+// polynomial& polynomial::operator=(const polynomial &ref) {
+//     cout << "Overloaded assignment ! (shallow)" << endl;
+//     this->coefficients = ref.coefficients;
+//     this->degree = ref.degree;
+
+//     return *this;
+// }
+
+//assignment overload operator (deep copy)
+polynomial& polynomial::operator=(const polynomial& ref) {
+
+    //needed to prevent memory leak
+    delete[] this->coefficients;
+
+    cout << "Overloaded assignment ! (deep)" << endl;
     this->degree = ref.degree;
+    this->coefficients = new double[this->degree + 1];
+
+    for (int i = 0; i < this->degree + 1; i++) {
+        this->coefficients[i] = ref.coefficients[i];
+    }
+
+    return *this;
+}
+
+
+//copy constructor (deep copy) 
+polynomial::polynomial(const polynomial &ref) {
+
+    cout << "Copy constructor ! (deep)" << endl;
+    this->degree = ref.degree;
+    this->coefficients = new double[this->degree + 1];
+
+    for (int i = 0; i < this->degree + 1; i++) {
+        this->coefficients[i] = ref[i];
+    }
 }
 
 //parametrised constructor
@@ -31,15 +70,8 @@ polynomial::polynomial(const int &degree) {
 
 //destructor
 polynomial::~polynomial() {
-    cout << "Calling destructor of polynomial" << endl;
-}
-
-//assignment overloaded operator
-polynomial& polynomial::operator=(const polynomial &ref) {
-    this->coefficients = ref.coefficients;
-    this->degree = ref.degree;
-
-    return *this;
+    cout << "Calling destructor of polynomial " << *this << endl;
+    delete[] this->coefficients;
 }
 
 double& polynomial::at(const int &i) {
