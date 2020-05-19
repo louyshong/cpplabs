@@ -1,5 +1,5 @@
 #$^ list of all the dependencies (including the first one, denoted by $<)
-all: polynomial.o main.o
+all: polynomial.o labeled_point.o main.o point.o
 	g++ $^ -o prog
 
 #implicit rule	

@@ -23,7 +23,8 @@ using namespace std;
 // }
 
 //these can be defined in point.cpp
-bool operator< (const point &p1, const point &p2) {
+bool operator<(const point &p1, const point &p2) {
+    //note this operator is not declared as friend function 
     if (p1.get_distance_org() < p2.get_distance_org()) {
         return true;
     } else {
@@ -31,7 +32,8 @@ bool operator< (const point &p1, const point &p2) {
     }
 }
 
-bool operator== (const point &p1, const point &p2) {
+bool operator==(const point &p1, const point &p2) {
+    //note this operator is declare as friend function
     if (p1.x == p2.x && p1.y == p2.y) {
         return true;
     } else {
@@ -39,7 +41,7 @@ bool operator== (const point &p1, const point &p2) {
     }
 }
 
-int farthestpoint (vector<point> pointsvec) {
+int farthestpoint(vector<point> pointsvec) {
     int i = 0;
 
     for (int j = 1; j < pointsvec.size(); j++) {
@@ -50,7 +52,7 @@ int farthestpoint (vector<point> pointsvec) {
     return i;
 }
 
-int member_point_unordsearch (const point &pref, const vector<point> &pointsvec) {
+int member_point_unordsearch(const point &pref, const vector<point> &pointsvec) {
     for (int i = 0; i < pointsvec.size(); i++) {
         if (pointsvec[i] == pref) {
             return i; 
@@ -59,7 +61,7 @@ int member_point_unordsearch (const point &pref, const vector<point> &pointsvec)
     return pointsvec.size();
 }
 
-int member_point_binsearch (const point &pref, const vector<point> &pointsvec) {
+int member_point_binsearch(const point &pref, const vector<point> &pointsvec) {
     bool found = false;
     int start = 0; 
     int end = pointsvec.size();
@@ -84,7 +86,7 @@ int member_point_binsearch (const point &pref, const vector<point> &pointsvec) {
 }
 
 //sorts using bubble sort
-void member_point_sort (vector<point> &pointsvec) {
+void member_point_sort(vector<point> &pointsvec) {
     int length = pointsvec.size(); 
     bool swapped = true; 
 
@@ -107,7 +109,7 @@ void member_point_sort (vector<point> &pointsvec) {
     }
 }
 
-int member_point (const point &pointref, const vector<point> &pointsvec, bool ordered = false) { 
+int member_point(const point &pointref, const vector<point> &pointsvec, bool ordered = false) { 
     
     int index; 
 
@@ -121,7 +123,7 @@ int member_point (const point &pointref, const vector<point> &pointsvec, bool or
     return index; 
 }
 
-vector<point> pointdup (const vector<point> &vec1, const vector<point> &vec2, bool ordered2 = false) {
+vector<point> pointdup(const vector<point> &vec1, const vector<point> &vec2, bool ordered2 = false) {
     
     vector<point> vec3;
     
