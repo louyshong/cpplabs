@@ -29,20 +29,20 @@ polynomial::polynomial() {
 //assignment overload operator (deep copy)
 polynomial& polynomial::operator=(const polynomial& ref) {
 
-    //needed to prevent memory leak
-    delete[] this->coefficients;
+    if (&ref != this) {
+        //needed to prevent memory leak
+        delete[] this->coefficients;
 
-    cout << "Overloaded assignment ! (deep)" << endl;
-    this->degree = ref.degree;
-    this->coefficients = new double[this->degree + 1];
+        cout << "Overloaded assignment ! (deep)" << endl;
+        this->degree = ref.degree;
+        this->coefficients = new double[this->degree + 1];
 
-    for (int i = 0; i < this->degree + 1; i++) {
-        this->coefficients[i] = ref.coefficients[i];
+        for (int i = 0; i < this->degree + 1; i++) {
+            this->coefficients[i] = ref.coefficients[i];
+        }
     }
-
     return *this;
 }
-
 
 //copy constructor (deep copy) 
 polynomial::polynomial(const polynomial &ref) {
