@@ -10,7 +10,7 @@ class Base {
         ~Base() { 
             cout << "~Base(): n_priv=" << n_priv << ", n_prot=" << n_prot << " is leaving" << endl;
         }
-        void f() { 
+        virtual void f() { 
             cout << "Base::f()" << endl;
         }
         void display() {
@@ -65,7 +65,39 @@ class Derived : public Base {
 class DerivedAgain : public Derived {};
 
 int main() {
-    // Base b1; 
-    // Derived d1; 
-    DerivedAgain da1;
+    // Base b1(1, 2); 
+    // Derived d1(3, 4, 5); 
+    // b1.display();
+    // b1.f();
+    // d1.display();
+    // d1.f();
+    // d1.new_function();
+    // d1.f(1);
+
+    // DerivedAgain da1;
+    // da1.f();
+    // da1.display();
+    // da1.new_function();
+    // da1.call_all_function();
+    // da1.f(2);
+
+    Base b1;
+    Derived d1;
+    Derived da1;
+    vector<Base> v1;
+    v1.push_back(b1); v1.push_back(d1); v1.push_back(da1);
+
+    for (int i = 0; i < v1.size(); i++) {
+        v1[i].f();
+    }
+
+    vector<Base*> v2;
+    Base* bp1 = new Base;
+    Derived* dp1 = new Derived;
+    DerivedAgain* dap1 = new DerivedAgain;
+    v2.push_back(bp1); v2.push_back(dp1); v2.push_back(dap1);
+
+    for (int i = 0; i < v2.size(); i++) {
+        v2[i]->f();
+    }
 }
