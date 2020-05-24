@@ -1,5 +1,5 @@
 #$^ list of all the dependencies (including the first one, denoted by $<)
-all: main.o
+all: main.o triangle.o point.o shape.o square.o
 	g++ $^ -o prog
 
 #implicit rule	
