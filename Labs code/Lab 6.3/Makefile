@@ -1,14 +1,29 @@
-#$^ list of all the dependencies (including the first one, denoted by $<)
-all: main.o game.o ninja.o samurai.o warrior.o
-	g++ $^ -o prog
+# --------- Variables ---------
+TARGET = bin/main
+OBJECTS = bin/warrior.o bin/ninja.o bin/samurai.o bin/game.o $(TARGET).o
 
-#implicit rule	
-#$< variable denotes the first dependency, %.cpp here.
-%.o : %.cpp %.hpp
-	g++ -c $<
+# --------- Compiler ----------
+CC = g++
+CCFLAGS = -Wall
 
-run:
-	./prog
-	
-clean:
-	rm *.o prog
+# --------- Compiling Options ----------
+INCFLAGS = -I ./inc 
+#LIBFLAGS = -L ./lib
+
+# --------- Compiling ----------
+bin/%.o : src/%.cpp
+	$(CC) $(CCFLAGS) $(INCFLAGS) -c $< -o $@
+
+# --------- Linking ----------
+all : $(TARGET)
+
+$(TARGET) : $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET)
+
+# --------- Running ----------
+run : 
+	./$(TARGET)
+
+# --------- Cleaning ----------
+clean : 
+	rm bin/*.o $(TARGET)
