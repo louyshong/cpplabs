@@ -1,6 +1,7 @@
 #include "game.hpp"
 #include <iostream> 
 #include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ void Game::add_bad_warrior(Warrior *w) {
 void Game::run() {
 
     int round = 1;
+    srand(time(NULL));
 
     cout << "Battle Start !!" << endl << endl;
     
