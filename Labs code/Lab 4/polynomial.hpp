@@ -8,8 +8,10 @@ class polynomial {
         polynomial();
         polynomial(const polynomial &ref);
         polynomial(const int &degree);
+        // polynomial(polynomial ref);
         ~polynomial();
         polynomial& operator=(const polynomial &ref);
+        // polynomial& operator=(polynomial ref);
         double& at(const int &i);
         double evaluate(const double &d) const;
         int get_degree() const;

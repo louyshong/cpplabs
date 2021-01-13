@@ -13,6 +13,7 @@ polynomial::polynomial() {
 
 //copy constructor (this is shallow copy)
 // polynomial::polynomial(const polynomial &ref) {
+//     cout << "Copy constructor ! (shallow)" << endl;
 //     this->coefficients = ref.coefficients;
 //     this->degree = ref.degree;
 // }
@@ -26,9 +27,38 @@ polynomial::polynomial() {
 //     return *this;
 // }
 
+//copy constructor (this is deep copy)?
+//this is not allowed (will not compile) 
+//parameter must be of type const polynomial& or others (cannot be of type polynomial)
+//because when you pass a parameter by value, it will be copied
+//but you are still in the midst of defining a copy constructor
+//so it will not work 
+// polynomial::polynomial(polynomial ref) {
+//     this->coefficients = ref.coefficients;
+//     this->degree = ref.degree;
+// }
+
+//assignment overloaded operator (this is deep copy)?
+//no, because ref.coefficients is a pointer to double
+//so this->coefficients will be a dangling pointer 
+//after exiting this scope (ref will be destroyed since it is a local variable)
+// polynomial& polynomial::operator=(polynomial ref) {
+//     cout << "Address of param ref: " << &ref << endl;
+//     cout << "Overloaded assignment ! (deep?)" << endl;
+//     this->coefficients = ref.coefficients;
+//     this->degree = ref.degree;
+
+//     return *this;
+// }
+
 //assignment overload operator (deep copy)
 polynomial& polynomial::operator=(const polynomial& ref) {
 
+    //if statement needed to protect self assignment
+    //however, i think it depends on the compiler
+    //clang will still allow you to access deleted memory locations
+    //so this->coefficients[i] = ref.coefficients[i]; would still work 
+    //however clang will raise runtime error if you try to delete twice 
     if (&ref != this) {
         //needed to prevent memory leak
         delete[] this->coefficients;
@@ -50,6 +80,7 @@ polynomial::polynomial(const polynomial &ref) {
     cout << "Copy constructor ! (deep)" << endl;
     this->degree = ref.degree;
     this->coefficients = new double[this->degree + 1];
+    cout << "Coefficients at add: " << &(this->coefficients) << endl;
 
     for (int i = 0; i < this->degree + 1; i++) {
         this->coefficients[i] = ref[i];
@@ -70,8 +101,10 @@ polynomial::polynomial(const int &degree) {
 
 //destructor
 polynomial::~polynomial() {
-    cout << "Calling destructor of polynomial " << *this << endl;
+    cout << "Calling destructor of polynomial " << endl;
+    cout << "Destroying coefficients at add: " << &(this->coefficients) << endl;
     delete[] this->coefficients;
+    cout << "Destroyed" << endl;
 }
 
 double& polynomial::at(const int &i) {
@@ -93,10 +126,12 @@ int polynomial::get_degree() const {
 }
 
 double polynomial::operator[](const int &index) const {
-    return this->coefficients[index];
+    // cout << "Const version of []" << endl;
+    return this->coefficients[index]; 
 }
 
 double& polynomial::operator[](const int &index) {
+    // cout << "Non-const version of []" << endl;
     return this->coefficients[index];
 }
 
