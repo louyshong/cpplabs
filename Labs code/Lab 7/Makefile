@@ -1,4 +1,4 @@
-swap.o: swap.cpp
+swap.o: swap.cpp complex.hpp
 	g++ -c swap.cpp 
 
 all: swap.o
