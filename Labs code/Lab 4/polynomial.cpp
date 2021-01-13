@@ -68,6 +68,8 @@ polynomial& polynomial::operator=(const polynomial& ref) {
         this->coefficients = new double[this->degree + 1];
 
         for (int i = 0; i < this->degree + 1; i++) {
+            //i think ref[i] or ref.coefficients[i] both work
+            //but idk why sahbi said does not work in week 5 part 1
             this->coefficients[i] = ref.coefficients[i];
         }
     }
