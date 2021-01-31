@@ -16,6 +16,8 @@ class point {
         // point();
         point(const double &x_in = 0, const double &y_in = 0);
         ~point();
+        // try overloading as both member function and friend function
+        bool operator==(const point &p);
 
     private: 
         double x; 

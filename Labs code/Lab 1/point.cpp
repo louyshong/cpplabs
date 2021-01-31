@@ -9,6 +9,12 @@ using namespace std;
 //     y = 0;
 // }
 
+bool point::operator==(const point &p) {
+    cout << "using member function version of operator ==" << endl;
+    x = p.x;
+    y = p.y;
+}
+
 point::point(const double &x_in, const double &y_in) {
     x = x_in;
     y = y_in;

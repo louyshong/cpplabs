@@ -33,7 +33,8 @@ bool operator<(const point &p1, const point &p2) {
 }
 
 bool operator==(const point &p1, const point &p2) {
-    //note this operator is declare as friend function
+    cout << "using friend function version of operator==" << endl;
+    //note this operator is declared as friend function
     if (p1.x == p2.x && p1.y == p2.y) {
         return true;
     } else {
@@ -179,9 +180,9 @@ int main(int argc, char* argv[]) {
 
     // point p;
 
-    // point p1(2, 4);
+    point p1(2, 4);
 
-    // point p2(2, 4);
+    point p2(2, 4);
 
     // triangle t1(p, p1, p2);
     // t1.display();
@@ -190,7 +191,7 @@ int main(int argc, char* argv[]) {
     // t1.display();
     // cout << t1.perimeter() << endl;
     // cout << "Is p1 < p2 ?: " << (p1 < p2) << endl;
-    // cout << "Is p1 == p2 ?: " << (p1 == p2) << endl;
+    cout << "Is p1 == p2 ?: " << (p1 == p2) << endl;
 
     // vector<point> pointsvec; 
     // cout << "Enter 5 points: (x then y)" << endl;
@@ -275,13 +276,13 @@ int main(int argc, char* argv[]) {
     //     // delete tmpptr;
     // }
 
-    point p(1, 2);
+    // point p(1, 2);
 
-    point p1(p);
-    point p2 = p;
+    // point p1(p);
+    // point p2 = p;
 
-    p2 = p2; 
-    point p3 = p2 = p1;
+    // p2 = p2; 
+    // point p3 = p2 = p1;
 
     // cout << "end of inner scope" << endl;
     
